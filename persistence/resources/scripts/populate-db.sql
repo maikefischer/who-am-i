@@ -1,3 +1,5 @@
+USE master;
+
 CREATE TABLE players (
     player_id int NOT NULL PRIMARY KEY,
     current_club_id int NOT NULL, 
@@ -9,7 +11,7 @@ CREATE TABLE players (
 
 
 BULK INSERT players
-    FROM '/tmp/data/players.csv'
+    FROM '/usr/work/data/players.csv'
     WITH
     (
     FIRSTROW = 2,
@@ -25,7 +27,7 @@ CREATE TABLE clubs (
 
 
 BULK INSERT clubs
-    FROM '/tmp/data/clubs.csv'
+    FROM '/usr/work/data/clubs.csv'
     WITH
     (
     FIRSTROW = 2,
@@ -47,7 +49,7 @@ CREATE TABLE appearances (
 
 
 BULK INSERT appearances
-    FROM '/tmp/data/appearances.csv'
+    FROM '/usr/work/data/appearances.csv'
     WITH
     (
     FIRSTROW = 2,
@@ -64,7 +66,7 @@ CREATE TABLE games (
 
 
 BULK INSERT games
-    FROM '/tmp/data/games.csv'
+    FROM '/usr/work/data/games.csv'
     WITH
     (
     FIRSTROW = 2,
