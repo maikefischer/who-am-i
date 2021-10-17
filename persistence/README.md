@@ -23,4 +23,4 @@ The data was extracted from [open source](https://data.world/dcereijo/player-sco
 
 The below picture shows the DB schema of the different tables.
 
-<img src="db-schema.png" alt="drawing" width="550"/>
+<img src="entity-relationship-diagram.png" alt="drawing" width="700"/>

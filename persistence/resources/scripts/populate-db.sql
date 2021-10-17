@@ -9,31 +9,9 @@ CREATE TABLE players (
     position VARCHAR(255),
 );
 
-
-BULK INSERT players
-    FROM '/usr/work/data/players.csv'
-    WITH
-    (
-    FIRSTROW = 2,
-    FIELDTERMINATOR = ';',
-    ROWTERMINATOR = '\n',
-    TABLOCK
-);
-
 CREATE TABLE clubs (
     club_id int NOT NULL PRIMARY KEY,
     pretty_name VARCHAR(255)
-);
-
-
-BULK INSERT clubs
-    FROM '/usr/work/data/clubs.csv'
-    WITH
-    (
-    FIRSTROW = 2,
-    FIELDTERMINATOR = ';',
-    ROWTERMINATOR = '\n',
-    TABLOCK
 );
 
 CREATE TABLE appearances (
@@ -47,6 +25,30 @@ CREATE TABLE appearances (
     red_cards int
 );
 
+CREATE TABLE games (
+    game_id int NOT NULL PRIMARY KEY,
+    season int
+);
+
+BULK INSERT players
+    FROM '/usr/work/data/players.csv'
+    WITH
+    (
+    FIRSTROW = 2,
+    FIELDTERMINATOR = ';',
+    ROWTERMINATOR = '\n',
+    TABLOCK
+);
+
+BULK INSERT clubs
+    FROM '/usr/work/data/clubs.csv'
+    WITH
+    (
+    FIRSTROW = 2,
+    FIELDTERMINATOR = ';',
+    ROWTERMINATOR = '\n',
+    TABLOCK
+);
 
 BULK INSERT appearances
     FROM '/usr/work/data/appearances.csv'
@@ -58,13 +60,6 @@ BULK INSERT appearances
     TABLOCK
 );
 
-
-CREATE TABLE games (
-    game_id int NOT NULL PRIMARY KEY,
-    season int
-);
-
-
 BULK INSERT games
     FROM '/usr/work/data/games.csv'
     WITH
@@ -74,3 +69,12 @@ BULK INSERT games
     ROWTERMINATOR = '\n',
     TABLOCK
 );
+
+ALTER TABLE appearances
+ADD FOREIGN KEY(player_id) REFERENCES players(player_id);
+
+ALTER TABLE players
+ADD FOREIGN KEY(current_club_id) REFERENCES clubs(club_id);
+
+ALTER TABLE appearances
+ADD FOREIGN KEY(game_id) REFERENCES games(game_id);
