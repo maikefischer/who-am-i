@@ -1,2 +1,6 @@
 persistence/resources/data/
 */.DS_Store
+.idea/
+*.iml
+target/
+.mvn/
