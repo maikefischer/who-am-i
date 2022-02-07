@@ -27,7 +27,6 @@ public class PlayerController {
     @ResponseStatus(HttpStatus.OK)
     @ResponseBody
     public PlayerDTO getPlayer() {
-
         return convertToDto(playerService.getRandomPlayer());
     }
 
